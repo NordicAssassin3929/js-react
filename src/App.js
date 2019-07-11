@@ -9,9 +9,14 @@ class App extends Component {
             isLoaded: false,
             searchString: ''
         }
+        // returns function
         this.handleChange = this.handleChange.bind(this);
     }
 
+    /*
+    Called immediately after a component is mounted. 
+    Setting state here will trigger re-rendering.
+    */
     componentDidMount() {
         fetch('https://flighter-hw7.herokuapp.com/api/flights', {
             method: 'GET',
@@ -36,6 +41,14 @@ class App extends Component {
         });
     }
 
+    deleteLocalStorage() {
+        localStorage.clear();
+    }
+
+    deleteSessionStorage() {
+        sessionStorage.clear();
+    }
+
     render() {
         const { isLoaded, items, filterText } = this.state;
 
@@ -43,11 +56,35 @@ class App extends Component {
         let search = this.state.searchString.trim().toLowerCase();
 
         if (search.length > 0) {
-            _items = _items.filter(function (item) {
-                return item.name.toLowerCase().match(search);
-            });
+            // if search isn't a number
+            if (!search.match(/^-{0,1}\d+$/)) {
+                _items = _items.filter(item => {
+                    localStorage.setItem('Flight name', item.name);
+                    sessionStorage.setItem('Flight base price', item.base_price);
+                    return item.name.toLowerCase().match(search);
+                });
+            }
+            else {
+                _items = _items.filter(item => {
+                    return item.current_price > search;
+                });
+            }
         }
+
+        function showFlights200() {
+            _items = _items.filter(item => {
+                return item.current_price > 200;
+            });
+            console.log(_items);
+        }
+
+        let style = {
+            border: '1px solid blue',
+            width: "220px"
+        };
+
         // Represents each flight's attributes
+        console.log(_items);
         const list = _items
             .map(item => {
                 return <li key={item.id}>
@@ -59,21 +96,30 @@ class App extends Component {
                     Lands At: {item.lands_at} <br />
                     Number of booked seats: {item.no_of_booked_seats} <br />
                     Company Name: {item.company_name} <br />
-                    Current price: {item.current_price} <br />
                 </li>
             })
         if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div>They see me Loadin' they Hatin'...</div>;
         }
         else {
             return (
                 <div className="App">
                     <input type="text"
+                        style={style}
                         value={this.state.searchString}
                         ref="search"
                         onChange={this.handleChange}
-                        placeholder="Filter by Name"
-                    />
+                        placeholder="Filter by Flight Name OR by Flight Price"
+                    /><br />
+                    <button
+                        onClick={this.showFlights200}>
+                        Show Flights with more than 200 seats</button><br />
+                    <button
+                        onClick={this.deleteLocalStorage}>
+                        Delete Local Storage</button><br />
+                    <button
+                        onClick={this.deleteSessionStorage}>
+                        Delete Session Storage</button><br />
                     <ul>
                         {list}
                     </ul>
