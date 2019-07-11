@@ -9,14 +9,9 @@ class App extends Component {
             isLoaded: false,
             searchString: ''
         }
-        // returns function
         this.handleChange = this.handleChange.bind(this);
     }
 
-    /*
-    Called immediately after a component is mounted. 
-    Setting state here will trigger re-rendering.
-    */
     componentDidMount() {
         fetch('https://flighter-hw7.herokuapp.com/api/flights', {
             method: 'GET',
@@ -56,7 +51,6 @@ class App extends Component {
         let search = this.state.searchString.trim().toLowerCase();
 
         if (search.length > 0) {
-            // if search isn't a number
             if (!search.match(/^-{0,1}\d+$/)) {
                 _items = _items.filter(item => {
                     localStorage.setItem('Flight name', item.name);
@@ -71,19 +65,11 @@ class App extends Component {
             }
         }
 
-        function showFlights200() {
-            _items = _items.filter(item => {
-                return item.current_price > 200;
-            });
-            console.log(_items);
-        }
-
         let style = {
             border: '1px solid blue',
             width: "220px"
         };
 
-        // Represents each flight's attributes
         console.log(_items);
         const list = _items
             .map(item => {
@@ -111,9 +97,6 @@ class App extends Component {
                         onChange={this.handleChange}
                         placeholder="Filter by Flight Name OR by Flight Price"
                     /><br />
-                    <button
-                        onClick={this.showFlights200}>
-                        Show Flights with more than 200 seats</button><br />
                     <button
                         onClick={this.deleteLocalStorage}>
                         Delete Local Storage</button><br />
