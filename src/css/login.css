@@ -1,0 +1,21 @@
+.wrapper {
+    display: grid;
+    grid-gap: 10px 5px;
+    grid-template-rows: [login] 100px [username] 75px [password] 25px [remember_me] 25px 
+    [button] 25px [no_account] 25px [register];
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+    height: 50vh;
+    margin-bottom: 500px;
+  }
+  
+  .login{
+      color: blue;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 30px
+  }
+  .login, .username, .password, .remember_me {
+    font-size: 20;
+    padding: 10px 20px;
+  }
