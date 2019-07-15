@@ -16,22 +16,32 @@ body {
   #find{
       text-align: center;
       font-size: 20px;
-      color: #8ab3f2;
+      color: #145fd9;
   }
   
-  #login{
-    right: 2em;
+  .login{
+    width: 100px;
+    height: 50px;
+    color: blue;
+    font-size: 20px;
+    margin-left:75px;
   }
 
-  #register{
-    position: relative; right: 0;
+  .register{  
+    font-size: 20px;
+    height: 50px;
+    margin-left: 20px;
+    color: blue;
   }
 
   .page-header {
     margin: 0;
-    background-color: #8ab3f2;
+    background-color: #145fd9;
     color: #fff;
     max-height: 300px;
+    display: grid;
+    grid-template-columns: auto 400px 200px;
+    padding-left: 1000px;
   }
 
   .page-main {
@@ -40,6 +50,8 @@ body {
     overflow: auto;/* added an overflow rule to make the main area scroll if necessary */
     display: grid;
     grid-template-columns: auto auto auto auto auto;
+    padding-right: 250px;
+    padding-left: 150px;
   }
 
   .best-flights {
@@ -50,13 +62,46 @@ body {
   }
 
   .search-item {
+    text-align: center;
+    display: inline-block;
     color: #2763c4;
+    width: 180px;
+}
+
+.ams {
+  text-align: center;
+    display: inline-block;
+    color: #2763c4;
+    font-size: 35px;
+    width: 180px;  
+    margin-top: 25px;
+    margin-left: 18px;
+}
+
+
+select {
+  height: 50px;
+  width: 100px;
+  display: block;
+  margin-top: 17px;
+  margin-left:60px;
+}
+
+.btn{
+  background-color: #2763c4;
+  color: white;
+  text-align: center;
+  padding: 15px 32px;
+  font-size: 16px;
+  display: inline-block;
+  margin: 17px 2px;
 }
   
   .page-footer {
     display: grid;
     grid-template-columns: auto auto auto;
     margin: 50px;
+    width: 500px;
     background-color: #4a5059;
   }
 
@@ -78,5 +123,13 @@ body {
 
   img {
     width: 100%;
+  }
+
+  .filter{
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 208px;
+    margin-bottom:30px;
+    height: 60px;
   }
 

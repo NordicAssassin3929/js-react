@@ -5,21 +5,21 @@ import '../css/register.css';
 export function Register() {
     return (
         <div className="wrapper">
-            <div className="register">Register</div>
+            <div className="register-head">Register</div>
             <div className="full_name">
             <input type="text" placeholder="Full name" name="username" id="username"></input>
             </div>
             <div className="email">
-            <input type="text" placeholder="Email" name="password" id="password"></input>
+            <input type="email" placeholder="Email" name="password" id="password"></input>
             </div>
             <div className="password">
-            <input type="text" placeholder="Password" name="password" id="password"></input>
+            <input type="password" placeholder="Password" name="password" id="password"></input>
             </div>
             <div className="confirm_password">
-            <input type="text" placeholder="Confirm Password" name="password" id="password"></input>
+            <input type="password" placeholder="Confirm Password" name="password" id="password"></input>
             </div>
-            <div className="button">
-            <Link to='/'><button>Login</button></Link>
+            <div className="yea">
+            <Link to='/'><button className="btn">Register</button></Link>
             </div>
         </div>
     );

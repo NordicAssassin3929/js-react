@@ -6,16 +6,56 @@
     justify-items: center;
     align-items: center;
     background-color: white;
-    height: 50vh;
+    height: 100vh;
     margin-bottom: 500px;
   }
   
-  .login{
+  .login-tab{
       color: blue;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 30px
+      font-size: 30px;
   }
-  .login, .username, .password, .remember_me {
-    font-size: 20;
+  .username, .password {
+    font-size: 15px;
     padding: 10px 20px;
+  }
+
+  .remember_me{
+    margin-top: 30px;
+    font-size: 15px;
+    color:black;  
+  }
+
+  input[type="text"] {
+    padding:10px;
+    border:none;
+    border-bottom:1px solid black;    
+ }
+
+ .register-here{
+  margin-bottom: 100px;
+ }
+
+ .no_account{
+   color: black;
+   margin-top: 160px;
+ }
+ .button{
+   width: 150px;
+  margin-top: 100px;
+ }
+
+ .bnt {
+  background-color: #2763c4;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  display: inline-block;
+  }
+
+  p:link, p:visited, p:hover, p:active {
+    text-decoration: none;
+  }
+  p{
+    color: #2763c4;
   }

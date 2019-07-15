@@ -29,14 +29,6 @@ export function Home() {
     const handleChange = (e) => {
         setString(e.target.value);
     }
-
-    const deleteLocalStorage = () => {
-        localStorage.clear();
-    }
-
-    const deleteSessionStorage = () => {
-        sessionStorage.clear();
-    }
     
     let _items = items;
     let search = searchString.trim().toLowerCase();
