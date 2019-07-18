@@ -36,8 +36,8 @@ export function HomeComponent() {
     else {
         return (
             <div className="container">
+            <h1 className="hello">Hello {appState.fullName}</h1>
                 <div className="page-header">
-                <h1>Hello {appState.fullName}</h1>
                     <Link to='/login'><button className="login">Login</button></Link>
                     <Link to='/register'><button className="register">Register</button></Link>
                 </div>
