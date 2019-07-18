@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useLocalStorage } from 'react-use';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Login } from './containers/Login';
-import { Register } from './containers/Register';
-import { Home } from './components/Home';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
+import { Home } from './containers/Home';
 
 function PrivateRoute({ isLoggedIn, Component, ...rest }) {
   function render(props) {
