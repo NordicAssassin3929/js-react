@@ -1,0 +1,46 @@
+.wrapper {
+    display: grid;
+    grid-gap: 10px 5px;
+    grid-template-rows: [login] 200px [username] 50px [password] 50px [remember_me] 
+    50px [button] 50px [no_account] 100px [register];
+    justify-items: center;
+    background-color: white;
+    align-items: center;
+    height: 100vh;
+}
+
+.registerHead {
+    color: #2c64b8;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+
+input,
+  input::-webkit-input-placeholder {
+    font-size: 15px;
+}
+
+.btn {
+    border-radius: 6px;
+    background-color: #2763c4;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    display: inline-block;
+    margin: 25px;
+    height: 40px;
+    width: 200px;
+}
+
+.yea {
+    padding-top: 100px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 220px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+}

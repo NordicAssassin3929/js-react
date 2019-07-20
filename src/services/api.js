@@ -3,11 +3,7 @@ import { appState } from "../state/AppState";
 export function get(model, header) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
     method: 'GET',
-    headers: {
-      'Authorization': `${appState.token}`,
-      'Accept': 'application/json',
-      'Content': 'application/json'
-    }
+    headers: header
   })
     .then((res) => res.json());
 }

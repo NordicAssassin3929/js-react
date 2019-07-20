@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css';
 import { observer } from 'mobx-react';
 import { appState } from '../state/AppState';
 import { createSession } from '../services/api';
-import { Redirect } from 'react-router-dom';
-import { browserHistory } from 'react-router';
+import styles from './Login.module.css';
 
-
+// komponente bez state-a
+// appState u container
 function login() {
     let sessionData = {
         session: {
@@ -22,30 +21,26 @@ function login() {
 
 export function LoginComponent() {
     return (
-        <div className="wrapper">
-            <div className="login-tab">Login</div>
-            <div className="username">
-                <input type="text"
-                    placeholder={`${appState.fullName}`} name="username" id="username"></input>
-            </div>
-            <div className="password">
-                <input type="password"
-                    placeholder={`${appState.password}`} name="password" id="password"></input>
-            </div>
-            <div className="remember_me">
+        <div className={styles.wrapper}>
+            <div className={styles.loginTab}>Login</div>
+            <input type="text"
+                placeholder="Username" name="username" id="username"></input>
+            <input type="password"
+                placeholder="Password" name="password" id="password"></input>
+            <div className={styles.rememberMe}>
                 <input type="checkbox" placeholder="Password" name="password" id="password"></input>
                 Remember me
             </div>
-            <div className="button">
-            <Link to='/'><button
+            <div className={styles.button}>
+                <Link to='/'><button
                     onClick={login}
-                    className="btn">
+                    className={styles.btn}>
                     Login</button></Link>
             </div>
-            <div className="no_account">
+            <div className={styles.noAccount}>
                 <h3>Don't have an account?</h3>
             </div>
-            <div className="register-here">
+            <div className={styles.registerHere}>
                 <Link to='/register'><p>Register here</p></Link>
             </div>
         </div>

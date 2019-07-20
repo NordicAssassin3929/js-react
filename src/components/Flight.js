@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Flight.css';
+import styles from './Flight.module.css';
 
 function formatTime(date) {
     const year = date.substring(0, 4);

@@ -6,7 +6,7 @@ import { useAsync } from 'react-use';
 import { Flight } from '../components/Flight';
 import { Link } from 'react-router-dom';
 import { loadFlights } from '../services/flights';
-import './Home.css';
+import styles from './Home.module.css';
 
 export function HomeComponent() {
     (async () => {

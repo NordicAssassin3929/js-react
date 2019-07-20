@@ -1,12 +1,3 @@
-body {
-    margin: 0;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
-    height: 150vh;
-    background-color: #4a5059;
-    font-family: Arial, Helvetica, sans-serif;
-  }
   div {
     color: #fff;
     padding: 1em;
@@ -34,7 +25,7 @@ body {
     color: blue;
   }
 
-  .page-header {
+  .pageHeader {
     margin: 0;
     background-color: #145fd9;
     color: #fff;
@@ -44,7 +35,7 @@ body {
     padding-left: 1000px;
   }
 
-  .page-main {
+  .pageMain {
     background-color: white;
     color: blueviolet;
     overflow: auto;/* added an overflow rule to make the main area scroll if necessary */
@@ -54,14 +45,14 @@ body {
     padding-left: 150px;
   }
 
-  .best-flights {
+  .bestFlights {
     text-align: center;
     grid-column: 1 / 6;
     font-size: 30px;
     color: #2763c4;
   }
 
-  .search-item {
+  .searchItem {
     text-align: center;
     display: inline-block;
     color: #2763c4;
@@ -87,7 +78,7 @@ select {
   margin-left:60px;
 }
 
-.btn{
+.btn {
   background-color: #2763c4;
   color: white;
   text-align: center;
@@ -97,7 +88,7 @@ select {
   margin: 17px 2px;
 }
   
-  .page-footer {
+  .pageFooter {
     display: grid;
     grid-template-columns: auto auto auto;
     margin: 50px;
@@ -105,7 +96,7 @@ select {
     background-color: #4a5059;
   }
 
-  .grid-item {
+  .gridItem {
       background-color:white;
       margin: 20px;
       padding-top: 50px;
