@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useEffectOnce } from 'react-use';
 import { observer } from 'mobx-react';
 import { appState } from '../state/AppState';
 import { useAsync } from 'react-use';
@@ -11,67 +10,75 @@ import styles from './Home.module.css';
 export function HomeComponent() {
     (async () => {
         let headers = {
-            'Authorization': `${appState.token}`,
+            //'Authorization': `${appState.token}`,
+            'Authorization': 'JYDfU4YsysbhqaZah6dmHGzB',
             'Accept': 'application/json',
             'Content': 'application/json'
         };
-        if (!appState.token) {
-            console.log('No token');
-        }
-        else {
-            await loadFlights(appState, headers);
-        }
+        // if (!appState.token) {
+        //     console.log('No token');
+        // }
+        // else {
+        await loadFlights(appState, headers);
+        // }
     })();
 
     function onFilterChange(e) {
         appState.flightFilter = e.target.value;
     }
 
-    if (!appState.token) {
-        return <div>
-            <p>Please register</p>
-            <Link to='/register'><button className="register">Register</button></Link>
-        </div>
-    }
-    else {
-        return (
-            <div className="container">
-            <h1 className="hello">Hello {appState.fullName}</h1>
-                <div className="page-header">
-                    <Link to='/login'><button className="login">Login</button></Link>
-                    <Link to='/register'><button className="register">Register</button></Link>
+    // if (!appState.token) {
+    //     return <div>
+    //         <p>Please register</p>
+    //         <Link to='/register'><button className="register">Register</button></Link>
+    //     </div>
+    // }
+    // else {
+    return (
+        <div className={styles.container}>
+            {/* <h1 className={styles.hello}>Hello {appState.fullName}</h1> */}
+            <div className={styles.pageHeader}>
+                <Link to='/login'><button className={styles.buttons}>Login</button></Link>
+                <Link to='/register'><button className={styles.buttons}>Register</button></Link>
+            </div>
+            <div className={styles.bestFlights}>
+                <p className={styles.find}>Find best flights for you and your friends!</p>
+            </div>
+            <div className={styles.pageItems}>
+                <div className={styles.searchItem}>
+                    <select>
+                        <option value="1">01 FEB 2019.</option>
+                        <option value="2">01 MAR 2019.</option>
+                        <option value="3">01 JUNE 2019.</option>
+                        <option value="4">01 JULY 2019.</option>
+                    </select>
                 </div>
-                <div className="page-main">
-                    <div className="best-flights">
-                        <p className="find">Find best flights for you and your friends!</p>
-                    </div>
-                    <div className="search-item">
-                        <select>
-                            <option value="1">01 FEB 2019.</option>
-                            <option value="2">01 MAR 2019.</option>
-                            <option value="3">01 JUNE 2019.</option>
-                            <option value="4">01 JULY 2019.</option>
-                        </select>
-                    </div>
-                    <div className="search-item"><title className="ams">Amsterdam</title></div>
-                    <div className="search-item"><select>
-                        <option value="1">4 PEOPLE</option>
-                        <option value="2">2 PEOPLE</option>
-                        <option value="3">3 PEOPLE</option>
-                        <option value="4">5 PEOPLE</option>
-                    </select></div>
-                    <div className="search-item">
-                    <button className="btn">Search</button>
+                <div className={styles.searchItem}>
+                    <input type="text"
+                    className={styles.ams}
+                    placeholder="Amsterdam">
+                    </input>
                 </div>
-                </div>             
-                <div className="list">
-                    {appState.filteredFlights.map((flight) => (
-                        <Flight flight={flight} key={flight.id} />
-                    ))}
+                <div className={styles.searchItem}><select>
+                    <option value="1">4 PEOPLE</option>
+                    <option value="2">2 PEOPLE</option>
+                    <option value="3">3 PEOPLE</option>
+                    <option value="4">5 PEOPLE</option>
+                </select></div>
+                <div className={styles.searchItem}>
+                    <button className={styles.btn}>
+                        Search
+                    </button>
                 </div>
             </div>
-        );
-    }
+            <div className={styles.pageFooter}>
+                {appState.filteredFlights.map((flight) => (
+                    <Flight flight={flight} key={flight.id} />
+                ))}
+            </div>
+        </div>
+    );
+    // }
 }
 
 export const Home = observer(HomeComponent);

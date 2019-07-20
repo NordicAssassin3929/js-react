@@ -1,6 +1,5 @@
 .wrapper {
     display: grid;
-    grid-gap: 10px 5px;
     grid-template-rows: [login] 200px [username] 50px [password] 50px [remember_me] 
     50px [button] 50px [no_account] 100px [register];
     justify-items: center;

@@ -1,0 +1,116 @@
+body{
+    background-color: #4a5059;
+}
+
+.pageHeader {
+    background-color: #145fd9;
+    color: #fff;
+    max-height: 300px;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-left: 800px;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .bestFlights {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding-left: 250px;
+    margin-left: 150px;
+    margin-right: 150px;
+    text-align: center;
+  }
+
+  .pageItems {
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto auto auto;    
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .searchItem {
+    text-align: center;
+    display: inline-block;
+    color: #2763c4;
+    width: 250px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+select {
+    height: 50px;
+    width: 250px;
+    display: inline-block;
+    margin-top: 17px;
+  }
+
+  .ams {
+    text-align: center;
+      display: inline-block;
+      color: #2763c4;
+      font-size: 20px;
+      width: 243px;  
+      margin-top: 20px;
+      padding-top: 30px;
+      vertical-align: middle;
+  }
+
+  input[type="text"] {
+    border-bottom: none;
+    outline: 1px solid black;
+  }
+
+  input,
+input::-webkit-input-placeholder {
+    font-size: 20px;
+}
+
+  .btn {
+    background-color: #2763c4;
+    color: white;
+    text-align: center;
+    padding: 15px 32px;
+    font-size: 16px;
+    display: inline-block;
+    margin: 17px 2px;
+    width: 250px;
+  }
+
+.find{
+      text-align: center;
+      font-size: 40px;
+      color: #145fd9;
+  }
+  
+  .buttons{
+    border-radius: 6px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 115px;
+    height: 35px;
+    color: blue;
+    font-size: 20px;
+    margin-right: 50px;
+  }
+
+  .filter{
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 208px;
+    margin-bottom:30px;
+    height: 60px;
+  }
+
+  .pageFooter {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      margin-top: 100px;
+      margin-left: 180px;
+      margin-right: 180px;
+      background-color: #4a5059;
+    }

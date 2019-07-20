@@ -13,10 +13,10 @@ function formatTime(date) {
 
 export function Flight({ flight }) {
     return (
-        <div className="page-footer" >
-            <div className="grid-item" key={flight.id}>
+        <div className={styles.pageFooter}>
+            <div className={styles.gridItem} key={flight.id}>
                 <img src="https://loremflickr.com/300/200/plane" alt="preview"></img>
-                <div className="info">
+                <div className={styles.info}>
                     <p>{formatTime(flight.flys_at)} - {formatTime(flight.lands_at)}</p>
                     Name: {flight.name} <br />
                     Price: {flight.current_price} <br />
