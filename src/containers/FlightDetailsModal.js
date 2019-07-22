@@ -6,6 +6,7 @@ import { useAsync } from 'react-use';
 import { useEffect } from 'react';
 import { createBooking } from '../services/api';
 import { AppContext } from '../state/AppContext';
+import { Link } from 'react-router-dom';
 
 function FlightDetailsModalComponent(props) {
     const { appState } = React.useContext(AppContext);
@@ -15,12 +16,12 @@ function FlightDetailsModalComponent(props) {
         let sessionData = {
             booking: {
                 "no_of_seats": 1,
-                "flight_id": 44
+                "flight_id": `${appState.item.id}`
             }
         };
         useAsync(createBooking.bind(null, appState, sessionData));
     }
-    
+
     function closeModal() {
         props.history.goBack();
     }
@@ -40,13 +41,18 @@ function FlightDetailsModalComponent(props) {
     //         }
     //     })
     // }
+    console.log(props);
 
     return (
         <div className={styles.modalContainer}>
             <div className={styles.modalContent}>
                 <h1>Hello from modal!</h1>
                 <button onClick={closeModal} >Close</button>
-                <button onClick={HandleSubmit} >Create Bookings</button>
+                <Link to={`/flight-details/${appState.item.id}`}>
+                    <button onSubmit={HandleSubmit} >
+                        Create Bookings
+                </button>
+                </Link>
             </div>
         </div>
     );

@@ -94,10 +94,10 @@ export function HomeComponent() {
             </div>
             <div className={styles.pageFooter}>
                 {appState.items.map(item => (
-                    <Link to={`/flight-details/${item.id}`}>
+                    <Link key={item.id} to={`/flight-details/${item.id}`}>
                     <div key={item.id} className={styles.gridItem}>
                         <img src="https://loremflickr.com/300/200/plane" alt="preview"></img>
-                        <div className={styles.info}>
+                        <div className={styles.info} >
                             <p>{formatTime(item.flys_at)} - {formatTime(item.lands_at)}</p>
                             Name: {item.name} <br />
                             Price: {item.current_price} <br />
