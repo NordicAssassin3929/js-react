@@ -1,25 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import { appState } from '../state/AppState';
 import { createSession } from '../services/api';
 import styles from './Login.module.css';
+import { useAsync } from 'react-use';
+import { AppContext } from '../state/AppContext';
 
 // komponente bez state-a
 // appState u container
-function login() {
-    let sessionData = {
-        session: {
-            'email': `${appState.email}`,
-            'password': localStorage.getItem('pass')
-        }
-    };
-    (async () => {
-        await createSession(sessionData);
-    })();
-}
 
 export function LoginComponent() {
+    const { appState } = React.useContext(AppContext);
+
+    const HandleSubmit = () => {
+        let sessionData = {
+            session: {
+                'email': `${appState.email}`,
+                'password': localStorage.getItem('pass')
+            }
+        };    
+        useAsync(createSession.bind(null, appState, sessionData));
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.loginTab}>Login</div>
@@ -33,7 +35,7 @@ export function LoginComponent() {
             </div>
             <div className={styles.button}>
                 <Link to='/'><button
-                    onClick={login}
+                    onSubmit={HandleSubmit}
                     className={styles.btn}>
                     Login</button></Link>
             </div>

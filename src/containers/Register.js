@@ -5,6 +5,8 @@ import { createUser } from '../services/api';
 import { observer } from 'mobx-react';
 import { createSession } from '../services/api';
 import styles from './Register.module.css';
+import { useAsync } from 'react-use';
+import { AppContext } from '../state/AppContext';
 
 function setFullName(e) {
     appState.fullName = e.target.value;
@@ -18,24 +20,18 @@ function setPassword(e) {
     appState.password = e.target.value;
 }
 
-function register(e) {
-    let data = {
-        user: {
-            'email': `${appState.email}`,
-            'first_name': `${appState.fullName}`,
-            'last_name': `${appState.fullName}`,
-            'password': `${appState.password}`
-        }
-    };
-    localStorage.setItem('pass', appState.password);
-
-    createUser(data);
-    console.log(appState.email);
-    console.log(appState.password);
-
-}
-
 export function RegisterComponent() {
+    const { appState } = React.useContext(AppContext);
+    const Register = () => {
+        let sessionData = {
+            session: {
+                'email': `${appState.email}`,
+                'password': localStorage.getItem('pass')
+            }
+        };    
+        useAsync(createSession.bind(null, appState, sessionData));
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.registerHead}>Register</div>
@@ -66,7 +62,7 @@ export function RegisterComponent() {
             <div className={styles.yea}>
                 <Link to='/login'><button
                     className={styles.btn}
-                    onClick={register}
+                    onSubmit={Register}
                 >Register</button></Link>
             </div>
         </div>

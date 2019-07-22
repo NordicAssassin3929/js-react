@@ -1,9 +1,20 @@
-import { appState } from "../state/AppState";
-
-export function get(model, header) {
+export function get(model, headers) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
     method: 'GET',
-    headers: header
+    headers: headers
+  })
+    .then((res) => res.json()
+    );
+}
+
+export function getFlight(id) {
+  return fetch(`https://flighter-hw7.herokuapp.com/api/flights/${id}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
+        'Accept': 'application/json',
+        'Content': 'application/json'
+    }
   })
     .then((res) => res.json());
 }
@@ -35,8 +46,22 @@ export function createSession(sessionData) {
   })
     .then(res => res.json())
     .then(res => {
-      appState.token = res.session.token
-      console.log(res.session.token);
-      console.log(appState.token);
+      this.appState.token = res.session.token
+    });
+}
+
+export function createBooking(sessionData) {
+  return fetch(`https://flighter-hw7.herokuapp.com/api/booking`, {
+    method: 'POST',
+    body: JSON.stringify(sessionData),
+    headers: {
+      'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
     });
 }

@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useLocalStorage } from 'react-use';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
+import { Login } from './containers/Login';
+import { Register } from './containers/Register';
 import { Home } from './containers/Home';
+import { FlightDetails } from './containers/FlightDetails';
+import { FlightDetailsModal } from './containers/FlightDetailsModal';
 
 function PrivateRoute({ isLoggedIn, Component, ...rest }) {
   function render(props) {
@@ -20,8 +22,10 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={Home} />
+      <Route path="/flight-details/:id" component={FlightDetails} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route exact path="/flight-details/modal" component={FlightDetailsModal} />
       <PrivateRoute isLoggedIn={Boolean(loggedIn)} path="/error" Component={Error} />
     </Router>
   );

@@ -1,11 +1,11 @@
 import { observable, decorate, computed, autorun } from 'mobx';
 
 class AppState {
-    data = {};
+    items = [];
+    id = '';
     flights = [];
     fullName = '';
     email = '';
-    password = '';
     token = '';
     isLoaded = false;
     flightFilter = localStorage.getItem('flightFilter') || '';
@@ -19,9 +19,10 @@ class AppState {
   
   // making properties observables
   decorate(AppState, {
+    items: observable,
+    id: observable,
     fullName: observable,
     email: observable,
-    password: observable,
     flights: observable,
     flightFilter: observable,
     token: observable,

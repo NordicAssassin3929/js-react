@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Flight.module.css';
+import { observer } from 'mobx-react';
+import { appState } from '../state/AppState';
 
 function formatTime(date) {
     const year = date.substring(0, 4);
@@ -11,7 +13,8 @@ function formatTime(date) {
     return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
 }
 
-export function Flight({ flight }) {
+export function FlightComponent({ flight }) {
+    console.log(flight.id);
     return (
         <div className={styles.pageFooter}>
             <div className={styles.gridItem} key={flight.id}>
@@ -25,3 +28,5 @@ export function Flight({ flight }) {
         </div>
     );
 }
+
+export const Flight = observer(FlightComponent);

@@ -1,27 +1,48 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { appState } from '../state/AppState';
-import { useAsync } from 'react-use';
+import { useAsync, useEffectOnce } from 'react-use';
 import { Flight } from '../components/Flight';
 import { Link } from 'react-router-dom';
 import { loadFlights } from '../services/flights';
 import styles from './Home.module.css';
+import { AppContext } from '../state/AppContext';
+
+function formatTime(date) {
+    const year = date.substring(0, 4);
+    const month = date.substring(5, 7);
+    const day = date.substring(8, 10);
+    const hours = date.substring(11, 13);
+    const minutes = date.substring(14, 16);
+    return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
+}
 
 export function HomeComponent() {
-    (async () => {
-        let headers = {
-            //'Authorization': `${appState.token}`,
-            'Authorization': 'JYDfU4YsysbhqaZah6dmHGzB',
-            'Accept': 'application/json',
-            'Content': 'application/json'
-        };
-        // if (!appState.token) {
-        //     console.log('No token');
-        // }
-        // else {
-        await loadFlights(appState, headers);
-        // }
-    })();
+    const { appState } = React.useContext(AppContext);
+
+    // useEffect ?
+    let headers = {
+        //'Authorization': `${appState.token}`,
+        'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
+        'Accept': 'application/json',
+        'Content': 'application/json'
+    };
+    // const items = useAsync(loadFlights.bind(null, appState, headers));
+    // console.log(items.value);
+
+    useEffectOnce(() => {
+        fetchItems();
+    }, []);
+
+    const fetchItems = async () => {
+        const data = await fetch(`https://flighter-hw7.herokuapp.com/api/flights`, {
+            method: 'GET',
+            headers: headers
+        })
+
+        const items = await data.json();
+        console.log(items.flights);
+        appState.items = items.flights;
+    }
 
     function onFilterChange(e) {
         appState.flightFilter = e.target.value;
@@ -55,8 +76,8 @@ export function HomeComponent() {
                 </div>
                 <div className={styles.searchItem}>
                     <input type="text"
-                    className={styles.ams}
-                    placeholder="Amsterdam">
+                        className={styles.ams}
+                        placeholder="Amsterdam">
                     </input>
                 </div>
                 <div className={styles.searchItem}><select>
@@ -72,9 +93,24 @@ export function HomeComponent() {
                 </div>
             </div>
             <div className={styles.pageFooter}>
-                {appState.filteredFlights.map((flight) => (
-                    <Flight flight={flight} key={flight.id} />
-                ))}
+                {appState.items.map(item => (
+                    <Link to={`/flight-details/${item.id}`}>
+                    <div key={item.id} className={styles.gridItem}>
+                        <img src="https://loremflickr.com/300/200/plane" alt="preview"></img>
+                        <div className={styles.info}>
+                            <p>{formatTime(item.flys_at)} - {formatTime(item.lands_at)}</p>
+                            Name: {item.name} <br />
+                            Price: {item.current_price} <br />
+                        </div>
+                    </div>
+                    </Link>))}
+                {/* {appState.items.map(item => (
+                    <h1 key={item.id}>
+                        <Link to={`/flight-details/${item.id}`}>
+                            <h1>{item.name}</h1>
+                        </Link>
+                    </h1>
+                ))} */}
             </div>
         </div>
     );
