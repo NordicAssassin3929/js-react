@@ -50,12 +50,12 @@ export function createSession(sessionData) {
     });
 }
 
-export function createBooking(sessionData) {
+export function createBooking(appState, sessionData) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/booking`, {
     method: 'POST',
     body: JSON.stringify(sessionData),
     headers: {
-      'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
+      'Authorization': `${appState.token}`,
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }

@@ -21,7 +21,7 @@ export function HomeComponent() {
 
     // useEffect ?
     let headers = {
-        //'Authorization': `${appState.token}`,
+        // 'Authorization': `${appState.token}`,
         'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
         'Accept': 'application/json',
         'Content': 'application/json'
@@ -42,10 +42,6 @@ export function HomeComponent() {
         const items = await data.json();
         console.log(items.flights);
         appState.items = items.flights;
-    }
-
-    function onFilterChange(e) {
-        appState.flightFilter = e.target.value;
     }
 
     // if (!appState.token) {
@@ -104,13 +100,6 @@ export function HomeComponent() {
                         </div>
                     </div>
                     </Link>))}
-                {/* {appState.items.map(item => (
-                    <h1 key={item.id}>
-                        <Link to={`/flight-details/${item.id}`}>
-                            <h1>{item.name}</h1>
-                        </Link>
-                    </h1>
-                ))} */}
             </div>
         </div>
     );

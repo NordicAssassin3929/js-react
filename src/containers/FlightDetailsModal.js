@@ -19,40 +19,31 @@ function FlightDetailsModalComponent(props) {
                 "flight_id": `${appState.item.id}`
             }
         };
-        useAsync(createBooking.bind(null, appState, sessionData));
+        const item = useAsync(createBooking.bind(null, appState, sessionData));
+        console.log(item);
+        closeModal();
     }
 
     function closeModal() {
         props.history.goBack();
     }
 
-    // useEffect(() => {
-    //     createBooking();
-    // }, []);
-
-    // const createBooking = async () => {
-    //     const data = await fetch(`https://flighter-hw7.herokuapp.com/api/bookings`, {
-    //         method: 'POST',
-    //         body: JSON.stringify(sessionData),
-    //         headers: {
-    //             'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    // }
-    console.log(props);
-
     return (
         <div className={styles.modalContainer}>
             <div className={styles.modalContent}>
                 <h1>Hello from modal!</h1>
                 <button onClick={closeModal} >Close</button>
-                <Link to={`/flight-details/${appState.item.id}`}>
-                    <button onSubmit={HandleSubmit} >
-                        Create Bookings
+                <button onSubmit={HandleSubmit} >
+                    Create Bookings
                 </button>
-                </Link>
+                <div className={styles.searchItem}>
+                    <select>
+                        <option value="1">01 FEB 2019.</option>
+                        <option value="2">01 MAR 2019.</option>
+                        <option value="3">01 JUNE 2019.</option>
+                        <option value="4">01 JULY 2019.</option>
+                    </select>
+                </div>
             </div>
         </div>
     );
