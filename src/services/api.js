@@ -35,7 +35,7 @@ export function createUser(data) {
 }
 
 // Login
-export function createSession(sessionData) {
+export function createSession(appState, sessionData) {
   console.log('WORKS');
   return fetch(`https://flighter-hw7.herokuapp.com/api/session`, {
     method: 'POST',
@@ -48,6 +48,7 @@ export function createSession(sessionData) {
     .then(res => res.json())
     .then(res => {
       localStorage.setItem('token', res.session.token);
+      appState.fullName = res.session.user.first_name;
     });
 }
 

@@ -10,14 +10,18 @@ export function LoginComponent(props) {
     const { appState } = React.useContext(AppContext);
     const { register, handleSubmit, errors } = useForm();
 
-    const registerSession = () => {
+    const registerSession = (data) => {
+        appState.email = data.email;
+        // console.log(appState.email);
+        localStorage.setItem('pass', data.password);
+        console.log(localStorage.getItem('pass'));
         let sessionData = {
             session: {
-                'email': `${appState.email}`,
+                'email': `${data.email}`,
                 'password': localStorage.getItem('pass')
             }
         };
-        createSession(sessionData);
+        createSession(appState, sessionData);
         props.history.push('/');
     }
 
@@ -29,7 +33,7 @@ export function LoginComponent(props) {
             <input
                 type="text"
                 placeholder="Username"
-                name="username"
+                name="email"
                 ref={register({
                     required: 'Username is required!',
                 })}>

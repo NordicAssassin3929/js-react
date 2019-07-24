@@ -13,8 +13,6 @@ export function RegisterComponent(props) {
         appState.email = data.email;
         appState.fullName = data.username;
         localStorage.setItem('pass', data.password);
-
-        localStorage.setItem('pass', data.password);
         let userData = {
             user: {
                 'email': `${appState.email}`,
