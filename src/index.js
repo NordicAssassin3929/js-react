@@ -17,16 +17,16 @@ function PrivateRoute({ isLoggedIn, Component, ...rest }) {
 }
 
 function App() {
-  const [loggedIn, setLoggedIn] = useLocalStorage('token', '');
+  // const [loggedIn, setLoggedIn] = useLocalStorage('token', '');
 
   return (
     <Router>
       <Route exact path="/" component={Home} />
-      <Route path="/flight-details/:id" component={FlightDetails} />
+      <Route exact path="/flight-details/:id" component={FlightDetails} />
+      <Route exact path="/flight-details/:id/modal" component={FlightDetailsModal} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <Route exact path="/flight-details/modal" component={FlightDetailsModal} />
-      <PrivateRoute isLoggedIn={Boolean(loggedIn)} path="/error" Component={Error} />
+      {/* <PrivateRoute isLoggedIn={Boolean(loggedIn)} path="/error" Component={Error} /> */}
     </Router>
   );
 }

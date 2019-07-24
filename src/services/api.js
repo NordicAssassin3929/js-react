@@ -11,14 +11,16 @@ export function getFlight(id) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/flights/${id}`, {
     method: 'GET',
     headers: {
-      'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
-        'Accept': 'application/json',
-        'Content': 'application/json'
+      // 'Authorization': localStorage.getItem('token'),
+      'Authorization': 'qumbgUVUZKurcNHZaJ2TDpTA',
+      'Accept': 'application/json',
+      'Content': 'application/json'
     }
   })
     .then((res) => res.json());
 }
 
+// Register
 export function createUser(data) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/users`, {
     method: 'POST',
@@ -29,13 +31,12 @@ export function createUser(data) {
     }
   })
     .then(res => res.json())
-    .then(err => console.log(err));
+    .then(res => console.log(res));
 }
 
+// Login
 export function createSession(sessionData) {
-  console.log(sessionData);
-  console.log(JSON.stringify(sessionData));
-  console.log(localStorage.getItem('pass'));
+  console.log('WORKS');
   return fetch(`https://flighter-hw7.herokuapp.com/api/session`, {
     method: 'POST',
     body: JSON.stringify(sessionData),
@@ -46,16 +47,17 @@ export function createSession(sessionData) {
   })
     .then(res => res.json())
     .then(res => {
-      this.appState.token = res.session.token
+      localStorage.setItem('token', res.session.token);
     });
 }
 
+// Booking
 export function createBooking(appState, sessionData) {
-  return fetch(`https://flighter-hw7.herokuapp.com/api/booking`, {
+  return fetch(`https://flighter-hw7.herokuapp.com/api/bookings`, {
     method: 'POST',
     body: JSON.stringify(sessionData),
     headers: {
-      'Authorization': `${appState.token}`,
+      'Authorization': `JPoX6jpA3kHWEjNkD3vqiRjA`,
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }

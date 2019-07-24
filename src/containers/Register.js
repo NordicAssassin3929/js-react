@@ -1,71 +1,87 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { appState } from '../state/AppState';
-import { createUser } from '../services/api';
 import { observer } from 'mobx-react';
-import { createSession } from '../services/api';
+import { createUser } from '../services/api';
 import styles from './Register.module.css';
-import { useAsync } from 'react-use';
 import { AppContext } from '../state/AppContext';
+import useForm from 'react-hook-form';
 
-function setFullName(e) {
-    appState.fullName = e.target.value;
-}
-
-function setEmail(e) {
-    appState.email = e.target.value;
-}
-
-function setPassword(e) {
-    appState.password = e.target.value;
-}
-
-export function RegisterComponent() {
+export function RegisterComponent(props) {
     const { appState } = React.useContext(AppContext);
-    const Register = () => {
-        let sessionData = {
-            session: {
+    const { register, handleSubmit, errors } = useForm();
+
+    const registerUser = (data) => {
+        appState.email = data.email;
+        appState.fullName = data.username;
+        localStorage.setItem('pass', data.password);
+
+        localStorage.setItem('pass', data.password);
+        let userData = {
+            user: {
                 'email': `${appState.email}`,
-                'password': localStorage.getItem('pass')
+                'first_name': `${appState.fullName}`,
+                'last_name': `${appState.fullName}`,
+                'password': `${localStorage.getItem('pass')}`    
             }
-        };    
-        useAsync(createSession.bind(null, appState, sessionData));
+        };
+        createUser(userData);
+        props.history.push('/login');
     }
 
     return (
-        <div className={styles.wrapper}>
+        <form onSubmit={handleSubmit(registerUser)}
+            className={styles.wrapper}>
             <div className={styles.registerHead}>Register</div>
-            <input type="text"
-                onChange={setFullName}
+            <input
+                className="fullNamee"
+                type="text"
                 placeholder="Full name"
                 name="username"
-                id="username">
+                ref={register({
+                    required: 'First name is required!',
+                })}>
             </input>
-            <input type="email"
-                onChange={setEmail}
+            {errors['username'] && errors['username'].message}
+            <input
+                className="emaill"
+                type="email"
                 placeholder="Email"
-                name="password"
-                id="password">
+                name="email"
+                ref={register({
+                    required: 'ej daj majl',
+                    pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: 'This is not an email format!',
+                    },
+                })}>
             </input>
-            <input type="password"
-                onChange={setPassword}
+            {errors['email'] && errors['email'].message}
+            <input
+                className="passwordd"
+                type="password"
                 placeholder="Password"
                 name="password"
-                id="password">
+                ref={register({
+                    validate: (value) => Boolean(value.length > 3) || 'Use a stronger password',
+                })}>
             </input>
-            <input type="password"
-                onChange={setPassword}
+            {errors['password'] && errors['password'].message}
+            <input 
+            className="confirmPasswordd"
+            type="password"
                 placeholder="Confirm Password"
                 name="confirmPassword"
-                id="confirmPassword">
+                ref={register({
+                    validate: (value) => Boolean(value.length > 3) || 'Use a stronger password',
+                })}>
             </input>
+            {errors['confirmPassword'] && errors['confirmPassword'].message}
             <div className={styles.yea}>
-                <Link to='/login'><button
+                <button
+                    type="submit"
                     className={styles.btn}
-                    onSubmit={Register}
-                >Register</button></Link>
+                >Register</button>
             </div>
-        </div>
+        </form>
     );
 }
 

@@ -1,28 +1,14 @@
 import React from 'react';
 import styles from './FlightDetails.module.css';
 import { observer } from 'mobx-react';
-import { getFlight } from '../services/api';
-import { useAsync } from 'react-use';
 import { AppContext } from '../state/AppContext';
-import { loadFlight } from '../services/flights';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
-function formatTime(date) {
-    const year = date.substring(0, 4);
-    const month = date.substring(5, 7);
-    const day = date.substring(8, 10);
-    const hours = date.substring(11, 13);
-    const minutes = date.substring(14, 16);
-    return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
-}
 
 export function FlightDetailsComponent(props) {
     const { appState } = React.useContext(AppContext);
 
     const [item, setItem] = useState({});
-
-    // useEffect ?
 
     let headers = {
         //'Authorization': `${appState.token}`,
@@ -49,8 +35,12 @@ export function FlightDetailsComponent(props) {
 
     //const item = useAsync(getFlight.bind(null, match.params.id));
     function openModal() {
-        props.history.push(`/flight-details/modal`);
-      }
+        props.history.push(`/flight-details/${appState.item.id}/modal`);
+    }
+
+    function backToHome() {
+        props.history.goBack();
+    }
 
     return (
         <div className={styles.pageFooter}>
@@ -61,6 +51,7 @@ export function FlightDetailsComponent(props) {
                     Price: {item.current_price} <br />
                 </div>
                 <button onClick={openModal}>Book now!</button>
+                <button onClick={backToHome} >Back to home page</button>
             </div>}
         </div>
     );

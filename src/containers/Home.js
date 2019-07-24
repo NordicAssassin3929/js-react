@@ -40,7 +40,7 @@ export function HomeComponent() {
         })
 
         const items = await data.json();
-        console.log(items.flights);
+        //console.log(items.flights);
         appState.items = items.flights;
     }
 
@@ -53,7 +53,7 @@ export function HomeComponent() {
     // else {
     return (
         <div className={styles.container}>
-            {/* <h1 className={styles.hello}>Hello {appState.fullName}</h1> */}
+            <h1 className={styles.hello}>Hello {appState.fullName}</h1>
             <div className={styles.pageHeader}>
                 <Link to='/login'><button className={styles.buttons}>Login</button></Link>
                 <Link to='/register'><button className={styles.buttons}>Register</button></Link>
