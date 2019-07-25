@@ -4,8 +4,8 @@ export function loadFlights(appState) {
   return get('flights')
     .then((res) => res.json()
       .then((res) => {
-        appState.flights = res.flights;
         console.log(res.flights);
+        appState.flights = res.flights;
       })
     );
 }

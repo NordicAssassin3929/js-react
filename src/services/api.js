@@ -3,6 +3,7 @@ export function get(model) {
     method: 'GET',
     headers: {
       'Authorization': localStorage.getItem('token'),
+      //'Authorization': 'ifNPDdFohVb5Xt6DkSawmPXu',
       'Accept': 'application/json',
       'Content': 'application/json'
     },

@@ -2,6 +2,7 @@ import { observable, decorate, computed, autorun } from 'mobx';
 
 class AppState {
     id = '';
+    isLoaded = false;
     flights = [];
     flight = [];
     fullName = '';
@@ -18,6 +19,7 @@ class AppState {
   // making properties observables
   decorate(AppState, {
     id: observable,
+    isLoaded: observable,
     flight: observable,
     fullName: observable,
     email: observable,
