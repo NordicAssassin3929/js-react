@@ -1,9 +1,9 @@
-export function get(model) {
+export function get(model, appState) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
     method: 'GET',
     headers: {
-      'Authorization': localStorage.getItem('token'),
-      //'Authorization': 'ifNPDdFohVb5Xt6DkSawmPXu',
+      //'Authorization': localStorage.getItem('token'),
+      'Authorization': 'ifNPDdFohVb5Xt6DkSawmPXu',
       'Accept': 'application/json',
       'Content': 'application/json'
     },
@@ -39,6 +39,7 @@ export function createSession(appState, sessionData) {
     .then(res => {
       console.log(res);
       localStorage.setItem('token', res.session.token);
+      appState.token = res.session.token;
       console.log(localStorage.getItem('token'));
       appState.fullName = res.session.user.first_name;
       console.log(appState.fullName);

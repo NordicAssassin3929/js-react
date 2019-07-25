@@ -1,11 +1,11 @@
 import { get } from './api';
 
 export function loadFlights(appState) {
-  return get('flights')
+  return get('flights', appState)
     .then((res) => res.json()
       .then((res) => {
-        console.log(res.flights);
         appState.flights = res.flights;
+        appState.isLoaded = true;
       })
     );
 }

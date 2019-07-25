@@ -26,16 +26,16 @@ export function HomeComponent() {
 
     async function gettingFlights() {
         await loadFlights(appState);
-        appState.isLoaded = true;
     }
 
-    if (!appState.isLoaded) {
-        return <div>
-            <p>Please register</p>
-            <Link to='/register'><button className="register">Register</button></Link>
-        </div>
-    }
-    else {
+    // if (!appState.isLoaded) {
+    //     return <div>
+    //         <p>Please register or log in</p>
+    //         <Link to='/login'><button className="register">Login</button></Link>
+    //         <Link to='/register'><button className="register">Register</button></Link>
+    //     </div>
+    // }
+    // else {
         return (
             <div className={styles.container}>
                 <h1 className={styles.hello}>Hello {appState.fullName}</h1>
@@ -88,7 +88,7 @@ export function HomeComponent() {
                 </div>
             </div>
         );
-    }
+    // }
 }
 
 export const Home = observer(HomeComponent);

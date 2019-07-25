@@ -53,7 +53,7 @@ export function LoginComponent(props) {
                     placeholder="checkbox"
                     name="checkbox">
                 </input>
-                {/* {errors['password'] && errors['password'].message} */}
+                {errors['password'] && errors['password'].message}
                 Remember me
             </div>
             <div
