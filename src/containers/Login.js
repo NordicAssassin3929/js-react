@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { createSession } from '../services/api';
 import styles from './Login.module.css';
@@ -12,9 +11,7 @@ export function LoginComponent(props) {
 
     const registerSession = (data) => {
         appState.email = data.email;
-        // console.log(appState.email);
-        localStorage.setItem('pass', data.password);
-        console.log(localStorage.getItem('pass'));
+        appState.password = data.password;
         let sessionData = {
             session: {
                 'email': `${data.email}`,

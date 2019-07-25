@@ -5,7 +5,7 @@ export function loadFlights(appState) {
     .then((res) => res.json()
       .then((res) => {
         appState.flights = res.flights;
-        console.log(res.flights)
+        console.log(res.flights);
       })
     );
 }

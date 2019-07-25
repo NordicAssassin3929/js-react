@@ -7,7 +7,6 @@ import { loadFlights } from '../services/flights';
 import styles from './Home.module.css';
 import { AppContext } from '../state/AppContext';
 import { get } from '../services/api';
-import { async } from 'q';
 
 function formatTime(date) {
     const year = date.substring(0, 4);
@@ -20,7 +19,6 @@ function formatTime(date) {
 
 export function HomeComponent() {
     const { appState } = React.useContext(AppContext);
-    const [items, setItems] = useState({});
 
     // async function gettingFlight() {
     //     const a = await getFlight(props.match.params.id)
@@ -35,8 +33,8 @@ export function HomeComponent() {
         gettingFlights();
     });
 
-    async function gettingFlights() {
-        await loadFlights(appState);
+    function gettingFlights() {
+        loadFlights(appState);
     }
 
     //console.log(appState.flights);

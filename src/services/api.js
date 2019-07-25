@@ -36,8 +36,11 @@ export function createSession(appState, sessionData) {
   })
     .then(res => res.json())
     .then(res => {
+      console.log(res);
       localStorage.setItem('token', res.session.token);
+      console.log(localStorage.getItem('token'));
       appState.fullName = res.session.user.first_name;
+      console.log(appState.fullName);
     });
 }
 
