@@ -18,7 +18,7 @@ export function LoginComponent(props) {
         let sessionData = {
             session: {
                 'email': `${data.email}`,
-                'password': localStorage.getItem('pass')
+                'password': `${appState.password}`
             }
         };
         createSession(appState, sessionData);

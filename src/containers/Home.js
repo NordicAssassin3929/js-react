@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { loadFlights } from '../services/flights';
 import styles from './Home.module.css';
 import { AppContext } from '../state/AppContext';
+import { get } from '../services/api';
+import { async } from 'q';
 
 function formatTime(date) {
     const year = date.substring(0, 4);
@@ -18,31 +20,48 @@ function formatTime(date) {
 
 export function HomeComponent() {
     const { appState } = React.useContext(AppContext);
+    const [items, setItems] = useState({});
 
-    // useEffect ?
-    let headers = {
-        // 'Authorization': `${appState.token}`,
-        'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
-        'Accept': 'application/json',
-        'Content': 'application/json'
-    };
-    // const items = useAsync(loadFlights.bind(null, appState, headers));
-    // console.log(items.value);
+    // async function gettingFlight() {
+    //     const a = await getFlight(props.match.params.id)
+    //         .then((res) => res.json())
+    //         .then((res) => {
+    //             console.log(res.flight);
+    //             setItem(res.flight);
+    //         });
+    // }
 
     useEffectOnce(() => {
-        fetchItems();
-    }, []);
+        gettingFlights();
+    });
 
-    const fetchItems = async () => {
-        const data = await fetch(`https://flighter-hw7.herokuapp.com/api/flights`, {
-            method: 'GET',
-            headers: headers
-        })
-
-        const items = await data.json();
-        //console.log(items.flights);
-        appState.items = items.flights;
+    async function gettingFlights() {
+        await loadFlights(appState);
     }
+
+    //console.log(appState.flights);
+
+    // useAsync(getFlight(props.match.params.id)
+    //     .then((res) => res.json())
+    //     .then((res) =>
+    //         console.log(res.flight)
+    //     )
+    // );
+
+    // useEffectOnce(() => {
+    //     fetchItems();
+    // }, []);
+
+    // const fetchItems = async () => {
+    //     const data = await fetch(`https://flighter-hw7.herokuapp.com/api/flights`, {
+    //         method: 'GET',
+    //         headers: headers
+    //     })
+
+    //     const items = await data.json();
+    //     //console.log(items.flights);
+    //     appState.items = items.flights;
+    // }
 
     // if (!appState.token) {
     //     return <div>
@@ -89,7 +108,7 @@ export function HomeComponent() {
                 </div>
             </div>
             <div className={styles.pageFooter}>
-                {appState.items.map(item => (
+                {appState.flights.map(item => (
                     <Link key={item.id} to={`/flight-details/${item.id}`}>
                     <div key={item.id} className={styles.gridItem}>
                         <img src="https://loremflickr.com/300/200/plane" alt="preview"></img>

@@ -1,16 +1,23 @@
 import { get } from './api';
-import { getFlight } from './api';
 
-export function loadFlights(appState, headers) {
-  return get('flights', headers)
-    .then((response) => response.flights)
-    .then((flights) => (appState.flights = flights));
+export function loadFlights(appState) {
+  return get('flights')
+    .then((res) => res.json()
+      .then((res) => {
+        appState.flights = res.flights;
+        console.log(res.flights)
+      })
+    );
 }
 
-export function loadFlight(appState, headers, id) {
-  return getFlight(id, headers)
-    .then((response) => response.flights)
-    .then((flights) => (appState.id = id));
+export function loadFlight(appState, id) {
+  return get(`flights/${id}`)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(id);
+      console.log(res);
+      appState.flight = res.flight;
+    });
 }
 
 // export function createUser() {

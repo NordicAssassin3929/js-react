@@ -2,40 +2,34 @@ import React from 'react';
 import styles from './FlightDetails.module.css';
 import { observer } from 'mobx-react';
 import { AppContext } from '../state/AppContext';
-import { useEffect } from 'react';
 import { useState } from 'react';
+import { useAsync, useEffectOnce } from 'react-use';
+import { getFlight } from '../services/api';
+import { useEffect } from 'react';
+import { loadFlight } from '../services/flights';
 
 export function FlightDetailsComponent(props) {
     const { appState } = React.useContext(AppContext);
+    
+    useEffectOnce(() => {
+        gettingFlight();
+    });
 
-    const [item, setItem] = useState({});
+    async function gettingFlight() {
+        appState.id = props.match.params.id;
+        console.log(appState.id);
+        await loadFlight(appState, appState.id);
+    }
 
-    let headers = {
-        //'Authorization': `${appState.token}`,
-        'Authorization': 'JPoX6jpA3kHWEjNkD3vqiRjA',
-        'Accept': 'application/json',
-        'Content': 'application/json'
-    };
+    // useAsync(getFlight(props.match.params.id)
+    //     .then((res) => res.json())
+    //     .then((res) =>
+    //         console.log(res.flight)
+    //     )
+    // );
 
-    useEffect(() => {
-        fetchItem();
-    }, []);
-
-    const fetchItem = async () => {
-        const data = await fetch(`https://flighter-hw7.herokuapp.com/api/flights/${props.match.params.id}`, {
-            method: 'GET',
-            headers: headers
-        });
-
-        const item = await data.json();
-        setItem(item.flight);
-        appState.item = item.flight
-        console.log(appState.item.id);
-    };
-
-    //const item = useAsync(getFlight.bind(null, match.params.id));
     function openModal() {
-        props.history.push(`/flight-details/${appState.item.id}/modal`);
+        props.history.push(`/flight-details/${props.match.params.id}/modal`);
     }
 
     function backToHome() {
@@ -44,11 +38,11 @@ export function FlightDetailsComponent(props) {
 
     return (
         <div className={styles.pageFooter}>
-            {<div className={styles.gridItem} key={item.id}>
+            {<div className={styles.gridItem} key={appState.flight.id}>
                 <img src="https://loremflickr.com/300/200/plane" alt="preview"></img>
                 <div className={styles.info}>
-                    Name: {item.name} <br />
-                    Price: {item.current_price} <br />
+                    Name: {appState.flight.name} <br />
+                    Price: {appState.flight.current_price} <br />
                 </div>
                 <button onClick={openModal}>Book now!</button>
                 <button onClick={backToHome} >Back to home page</button>

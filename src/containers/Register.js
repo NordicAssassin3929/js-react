@@ -12,13 +12,13 @@ export function RegisterComponent(props) {
     const registerUser = (data) => {
         appState.email = data.email;
         appState.fullName = data.username;
-        localStorage.setItem('pass', data.password);
+        appState.password = data.password;
         let userData = {
             user: {
                 'email': `${appState.email}`,
                 'first_name': `${appState.fullName}`,
                 'last_name': `${appState.fullName}`,
-                'password': `${localStorage.getItem('pass')}`    
+                'password': `${appState.password}`    
             }
         };
         createUser(userData);

@@ -11,16 +11,20 @@ function FlightDetailsModalComponent(props) {
 
     const registerBooking = (data) => {
         console.log('test');
-        console.log(appState.item.id)
         console.log(data);
         console.log(data.number);
+        console.log(localStorage.getItem('token'));
         let sessionData = {
             "booking": {
                 "no_of_seats": data.number,
-                "flight_id": `${appState.item.id}`
+                "flight_id": `${props.match.params.id}`
             }
         };
-        createBooking(appState, sessionData);
+        let headers = {
+            'Authorization': `${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+        };
+        createBooking(sessionData, headers);
     }
 
     function closeModal() {
@@ -28,16 +32,16 @@ function FlightDetailsModalComponent(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit(registerBooking)} 
-        className={styles.modalContainer}>
+        <form onSubmit={handleSubmit(registerBooking)}
+            className={styles.modalContainer}>
             <div className={styles.modalContent}>
                 <h1>Create booking</h1>
                 <button onClick={closeModal} >Close</button>
                 <h4>Number of passengers</h4>
-                <select 
-                name="number"
-                ref={register}
-                className={styles.searchItem}>
+                <select
+                    name="number"
+                    ref={register}
+                    className={styles.searchItem}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
