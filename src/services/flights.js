@@ -1,11 +1,11 @@
 import { get } from './api';
 
-export function loadFlights(appState) {
-  return get('flights', appState)
+export function loadFlights(appState, headers) {
+  return get('flights', appState, headers)
     .then((res) => res.json()
       .then((res) => {
         appState.flights = res.flights;
-        appState.isLoaded = true;
+        //appState.isLoaded = true;
       })
     );
 }
@@ -17,6 +17,15 @@ export function loadFlight(appState, id) {
       console.log(id);
       console.log(res);
       appState.flight = res.flight;
+    });
+}
+
+export function getUser(appState, id) {
+  return get(`users/${id}`)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(id);
+      console.log(res);
     });
 }
 

@@ -20,12 +20,19 @@ function formatTime(date) {
 export function HomeComponent() {
     const { appState } = React.useContext(AppContext);
 
+    let headers = {
+        //'Authorization': localStorage.getItem('token'),
+        'Authorization': 'RENrxEGTowKEbdEiwJCx1U5j',
+        'Accept': 'application/json',
+        'Content': 'application/json'
+      }
+
     useEffectOnce(() => {
         gettingFlights();
     });
 
     async function gettingFlights() {
-        await loadFlights(appState);
+        await loadFlights(appState, headers);
     }
 
     // if (!appState.isLoaded) {

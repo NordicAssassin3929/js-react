@@ -7,26 +7,33 @@ import { useAsync, useEffectOnce } from 'react-use';
 import { getFlight } from '../services/api';
 import { useEffect } from 'react';
 import { loadFlight } from '../services/flights';
+import { getUser } from '../services/flights';
 
 export function FlightDetailsComponent(props) {
     const { appState } = React.useContext(AppContext);
-    
+
+    let headers = {
+        //'Authorization': localStorage.getItem('token'),
+        'Authorization': 'RENrxEGTowKEbdEiwJCx1U5j',
+        'Accept': 'application/json',
+        'Content': 'application/json'
+      }
+
     useEffectOnce(() => {
         gettingFlight();
+        getIt();
     });
 
     async function gettingFlight() {
         appState.id = props.match.params.id;
         console.log(appState.id);
-        await loadFlight(appState, appState.id);
+        await loadFlight(appState, headers, appState.id);
     }
 
-    // useAsync(getFlight(props.match.params.id)
-    //     .then((res) => res.json())
-    //     .then((res) =>
-    //         console.log(res.flight)
-    //     )
-    // );
+    async function getIt(){
+        console.log('appState.userId:' + appState.userId);
+        await getUser(appState, appState.userId);
+    }
 
     function openModal() {
         props.history.push(`/flight-details/${props.match.params.id}/modal`);
@@ -43,6 +50,9 @@ export function FlightDetailsComponent(props) {
                 <div className={styles.info}>
                     Name: {appState.flight.name} <br />
                     Price: {appState.flight.current_price} <br />
+                </div>
+                <div>
+                    Bookings: 
                 </div>
                 <button onClick={openModal}>Book now!</button>
                 <button onClick={backToHome} >Back to home page</button>

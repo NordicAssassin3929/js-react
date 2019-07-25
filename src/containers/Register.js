@@ -21,7 +21,7 @@ export function RegisterComponent(props) {
                 'password': `${appState.password}`    
             }
         };
-        createUser(userData);
+        createUser(userData, appState);
         props.history.push('/login');
     }
 

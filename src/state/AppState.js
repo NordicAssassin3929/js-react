@@ -6,6 +6,8 @@ class AppState {
     isLoaded = false;
     flights = [];
     flight = [];
+    userId = '';
+    user = [];
     fullName = '';
     email = '';
     flightFilter = localStorage.getItem('flightFilter') || '';
@@ -20,10 +22,12 @@ class AppState {
   // making properties observables
   decorate(AppState, {
     id: observable,
+    userId: observable,
     token: observable,
     isLoaded: observable,
     flight: observable,
     fullName: observable,
+    user: observable,
     email: observable,
     flights: observable,
     flightFilter: observable,
