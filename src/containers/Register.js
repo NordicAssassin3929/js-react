@@ -4,24 +4,25 @@ import { createUser } from '../services/api';
 import styles from './Register.module.css';
 import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
+import { async } from 'q';
 
 export function RegisterComponent(props) {
     const { appState } = React.useContext(AppContext);
     const { register, handleSubmit, errors } = useForm();
 
-    const registerUser = (data) => {
+    async function registerUser(data){
         appState.email = data.email;
         appState.fullName = data.username;
         appState.password = data.password;
         let userData = {
             user: {
-                'email': `${appState.email}`,
-                'first_name': `${appState.fullName}`,
-                'last_name': `${appState.fullName}`,
-                'password': `${appState.password}`    
+                'email': `${data.email}`,
+                'first_name': `${data.username}`,
+                'last_name': `${data.username}`,
+                'password': `${data.password}`    
             }
         };
-        createUser(userData, appState);
+        await createUser(userData, appState);
         props.history.push('/login');
     }
 

@@ -1,4 +1,4 @@
-export function get(model, appState, headers) {
+export function get(model, headers) {
   return fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
     method: 'GET',
     headers: headers
@@ -22,9 +22,22 @@ export function createUser(data, appState) {
     )
 }
 
+// Update User
+export function updateUser(data, headers, appState) {
+  return fetch(`https://flighter-hw7.herokuapp.com/api/users/${appState.userId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: headers
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+    }
+    )
+}
+
 // Login
 export function createSession(appState, sessionData) {
-  console.log('WORKS');
   return fetch(`https://flighter-hw7.herokuapp.com/api/session`, {
     method: 'POST',
     body: JSON.stringify(sessionData),
@@ -35,7 +48,7 @@ export function createSession(appState, sessionData) {
   })
     .then(res => res.json())
     .then(res => {
-      console.log(res);
+      console.log(res.session.user.id);
       // user id for bookings set
       appState.userId = res.session.user.id;
       // token set
@@ -58,4 +71,21 @@ export function createBooking(sessionData, headers) {
       console.log(res);
     });
 }
+
+
+export function uploadPhoto(body, appState) {
+  return fetch('https://isa-js-upload.andreicek.dev/upload', {
+    method: 'POST',
+    headers: {
+      Authorization: localStorage.getItem('token'),
+    },
+    body,
+  }).then((response) => response.json())
+    .then((res) => {
+      console.log(res); 
+      console.log(res.imageUrl); 
+      appState.imageUrl = res.imageUrl;
+    });
+}
+
 

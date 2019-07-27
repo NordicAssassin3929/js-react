@@ -17,12 +17,11 @@ function formatTime(date) {
     return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
 }
 
-export function HomeComponent() {
+export function HomeComponent(props) {
     const { appState } = React.useContext(AppContext);
 
     let headers = {
-        //'Authorization': localStorage.getItem('token'),
-        'Authorization': 'RENrxEGTowKEbdEiwJCx1U5j',
+        'Authorization': localStorage.getItem('token'),
         'Accept': 'application/json',
         'Content': 'application/json'
       }
@@ -33,6 +32,10 @@ export function HomeComponent() {
 
     async function gettingFlights() {
         await loadFlights(appState, headers);
+    }
+
+    function myProfile(){
+        props.history.push(`/profile`);    
     }
 
     // if (!appState.isLoaded) {
@@ -46,6 +49,7 @@ export function HomeComponent() {
         return (
             <div className={styles.container}>
                 <h1 className={styles.hello}>Hello {appState.fullName}</h1>
+                <button onClick={myProfile}>Visit your Profile!</button>
                 <div className={styles.pageHeader}>
                     <Link to='/login'><button className={styles.buttons}>Login</button></Link>
                     <Link to='/register'><button className={styles.buttons}>Register</button></Link>

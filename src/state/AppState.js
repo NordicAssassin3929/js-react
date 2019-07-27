@@ -2,6 +2,7 @@ import { observable, decorate, computed, autorun } from 'mobx';
 
 class AppState {
     id = '';
+    bookings = [];
     token = '';
     isLoaded = false;
     flights = [];
@@ -10,6 +11,7 @@ class AppState {
     user = [];
     fullName = '';
     email = '';
+    imageUrl = '';
     flightFilter = localStorage.getItem('flightFilter') || '';
     // computed value - updated automatically when relevant data is modified
     get filteredFlights() {
@@ -21,7 +23,9 @@ class AppState {
   
   // making properties observables
   decorate(AppState, {
+    imageUrl: observable,
     id: observable,
+    bookings: observable,
     userId: observable,
     token: observable,
     isLoaded: observable,

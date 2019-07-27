@@ -9,16 +9,16 @@ export function LoginComponent(props) {
     const { appState } = React.useContext(AppContext);
     const { register, handleSubmit, errors } = useForm();
 
-    const registerSession = (data) => {
+    async function registerSession(data){
         appState.email = data.email;
         appState.password = data.password;
         let sessionData = {
             session: {
                 'email': `${data.email}`,
-                'password': `${appState.password}`
+                'password': `${data.password}`
             }
         };
-        createSession(appState, sessionData);
+        await createSession(appState, sessionData);
         props.history.push('/');
     }
 

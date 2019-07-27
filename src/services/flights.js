@@ -1,17 +1,17 @@
 import { get } from './api';
 
 export function loadFlights(appState, headers) {
-  return get('flights', appState, headers)
+  return get('flights', headers)
     .then((res) => res.json()
       .then((res) => {
+        console.log('res.flights: ' + res.flights);
         appState.flights = res.flights;
-        //appState.isLoaded = true;
       })
     );
 }
 
-export function loadFlight(appState, id) {
-  return get(`flights/${id}`)
+export function loadFlight(appState, headers, id) {
+  return get(`flights/${id}`, headers)
     .then((res) => res.json())
     .then((res) => {
       console.log(id);
@@ -20,21 +20,14 @@ export function loadFlight(appState, id) {
     });
 }
 
-export function getUser(appState, id) {
-  return get(`users/${id}`)
+export function getUser(appState, headers, id) {
+  return get(`users/${id}`, headers)
     .then((res) => res.json())
     .then((res) => {
       console.log(id);
+      console.log(res.user.bookings);
+      appState.bookings = res.user.bookings
+      appState.user = res.user;
       console.log(res);
     });
 }
-
-// export function createUser() {
-//   return post('users')
-//     .then((response) => console.log(response));
-// }
-
-// export function createSession(appState) {
-//   return post('session')
-//     .then((response) => console.log(response));
-// }
