@@ -1,0 +1,23 @@
+.pageFooter {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px 5px;
+    background-color: #4a5059;
+  }
+
+  .gridItem {
+      background-color:white;
+      padding-top: 50px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+  }
+
+  .info {
+    color: #2763c4;
+    padding: 2px 16px;
+  }
+
+  img {
+    width: 100%;
+  }
+
