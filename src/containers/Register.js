@@ -4,7 +4,6 @@ import { createUser } from '../services/api';
 import styles from './Register.module.css';
 import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
-import { async } from 'q';
 
 export function RegisterComponent(props) {
     const { appState } = React.useContext(AppContext);

@@ -38,12 +38,13 @@ function ProfileModalComponent(props) {
         /*
         {username: "natan", email: "example@example.com", password: "1221"}
         */
+       // password: secret1
         let sessionData = {
             "user": {
                 "email": data.email,
                 "first_name": data.username,
-                "last_name": "Bisping",
-                "password": "secret",
+                "last_name": appState.user.last_name,
+                "password": data.password,
                 "image_url": appState.imageUrl
             }
         };

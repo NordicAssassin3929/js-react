@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Flight.module.css';
 import { observer } from 'mobx-react';
-import { appState } from '../state/AppState';
 
 function formatTime(date) {
     const year = date.substring(0, 4);

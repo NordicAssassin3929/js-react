@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 import { AppContext } from '../state/AppContext';
 import { useEffectOnce } from 'react-use';
 import { loadFlight } from '../services/flights';
-import { getUser } from '../services/flights';
 
 export function FlightDetailsComponent(props) {
     const { appState } = React.useContext(AppContext);

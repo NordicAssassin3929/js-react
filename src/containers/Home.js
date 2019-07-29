@@ -1,12 +1,10 @@
 import { observer } from 'mobx-react';
-import { useAsync, useEffectOnce } from 'react-use';
-import { Flight } from '../components/Flight';
+import { useEffectOnce } from 'react-use';
 import { Link } from 'react-router-dom';
 import { loadFlights } from '../services/flights';
 import styles from './Home.module.css';
 import { AppContext } from '../state/AppContext';
-import { get } from '../services/api';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function formatTime(date) {
     const year = date.substring(0, 4);
