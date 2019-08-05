@@ -17,8 +17,6 @@ function ProfileModalComponent(props) {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
     const [file, setFile] = useState(null);
 
-    const image = appState.imageUrl;
-
     function onDrop(files) {
         console.log(files[0]);
         setFile(files[0]);
@@ -64,7 +62,7 @@ function ProfileModalComponent(props) {
             className={styles.modalContainer}>
             <div className={styles.modalContent}>
                 <h1>Edit profile</h1>
-                <img src={image}
+                <img src={appState.imageUrl}
                     alt="Smiley face" height="150" width="42"></img>
                 <div {...getRootProps()}>
                     <input {...getInputProps()} />

@@ -1,22 +1,79 @@
-.pageFooter {
+  .pageHeader {
+    background-color: #145fd9;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    display: grid;
+    grid-template-columns: auto auto;
+    /* padding-left: 800px; */
+    justify-content: end;
+  }
+
+  .logout{
+      border-radius: 6px;
+      font-family: 'Times New Roman', Times, serif;
+      width: 115px;
+      height: 35px;
+      color: blue;
+      font-size: 20px;
+      margin-right: 50px;
+  }
+
+  .bookNow{
+    border-color: #4a5059;
+    border-radius: 6px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 250px;
+    height: 55px;
+    background-color: #145fd9;
+    color: white;
+    font-size: 20px;
+    margin-right: 50px;
+  }
+
+  .bookNowDiv{
+    margin-left: 200px;
+  }
+
+  .pageHeaderItems{
+    margin-right: 50px;
+  }
+
+  .title{
+    /* border: 5px solid red; */
+    padding-left: 175px;
+    padding-top: 40px;   
+    font-size: 35px;  
+    color: blue;
+  }
+
+  .content{
+    /* border: 5px solid green; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .image{
+    /* border: 5px solid red; */
+    width: 400px;
+  }
+
+  .options{
+    justify-content: end;
+    display: grid;
+    grid-template-columns: 150px 500px;
+    grid-template-rows: 75px;
+  }
+
+  .contentAndImage{
+    /* border: 5px solid red; */
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-gap: 10px 5px;
-    background-color: white;
+    grid-gap: 100px;
+    margin-top: 50px;
+    margin-left: 180px;
+    margin-right: 180px;
   }
-
-  .gridItem {
-      background-color:white;
-      padding-top: 50px;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-  }
-
-  .info {
-    color: #2763c4;
-    padding: 2px 16px;
-  }
-
-  img {
-    width: 100%;
-  }
+  

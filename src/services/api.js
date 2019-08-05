@@ -48,6 +48,8 @@ export function createSession(appState, sessionData) {
   })
     .then(res => res.json())
     .then(res => {
+      appState.imageProfile = res.session.user.image_url;
+      console.log(res);
       console.log(res.session.user.id);
       // user id for bookings set
       appState.userId = res.session.user.id;
@@ -72,7 +74,7 @@ export function createBooking(sessionData, headers) {
     });
 }
 
-
+// photo
 export function uploadPhoto(body, appState) {
   return fetch('https://isa-js-upload.andreicek.dev/upload', {
     method: 'POST',
@@ -86,6 +88,16 @@ export function uploadPhoto(body, appState) {
       console.log(res.imageUrl); 
       appState.imageUrl = res.imageUrl;
     });
+}
+
+// format time
+export function formatTime(date) {
+  const year = date.substring(0, 4);
+  const month = date.substring(5, 7);
+  const day = date.substring(8, 10);
+  const hours = date.substring(11, 13);
+  const minutes = date.substring(14, 16);
+  return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
 }
 
 

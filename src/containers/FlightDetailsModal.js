@@ -36,7 +36,6 @@ function FlightDetailsModalComponent(props) {
             className={styles.modalContainer}>
             <div className={styles.modalContent}>
                 <h1>Create booking</h1>
-                <button onClick={closeModal} >Close</button>
                 <h4>Number of passengers</h4>
                 <select
                     name="number"
@@ -48,7 +47,7 @@ function FlightDetailsModalComponent(props) {
                     <option value="4">4</option>
                 </select>
                 <button
-                    className="ddd"
+                    className={styles.bookNow}
                     type="submit">
                     Confirm Booking
                 </button>

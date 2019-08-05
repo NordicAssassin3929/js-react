@@ -1,6 +1,7 @@
 import { observable, decorate, computed, autorun } from 'mobx';
 
 class AppState {
+    imageProfile = '';
     id = '';
     bookings = [];
     token = '';
@@ -23,6 +24,7 @@ class AppState {
   
   // making properties observables
   decorate(AppState, {
+    imageProfile: observable,
     imageUrl: observable,
     id: observable,
     bookings: observable,

@@ -28,7 +28,7 @@ export function ProfileComponent(props) {
         props.history.goBack();
     }
 
-    function edit(){
+    function edit() {
         props.history.push('/profile/modal');
         // POST REQUEST TO EDIT USER DETAILS
     }
@@ -40,13 +40,20 @@ __proto__: Object
     return (
         <div>
             <div className={styles.pageHeader}>
-                    <h4>Hi {appState.user.first_name}!</h4>
-                    <Link to='/login'><button className={styles.buttons}>Logout</button></Link>
-                </div>
+                <h4>Hi {appState.user.first_name}!</h4>
+                <Link to='/login'><button className={styles.buttons}>Logout</button></Link>
+            </div>
             <h3>Hi {appState.user.first_name} {appState.user.last_name}<br></br>
-            {appState.user.email}
+                {appState.user.email}
             </h3>
             <button onClick={edit}>Edit</button><br></br>
+            {appState.imageProfile ? (
+                <img src={appState.imageProfile}
+                alt="Smiley face" height="150" width="42"></img>
+            ) : (
+                <img src={appState.imageUrl}
+                alt="Smiley face" height="150" width="42"></img>
+            )}
             My bookings:
             <div>
                 {appState.bookings.map(booking => (

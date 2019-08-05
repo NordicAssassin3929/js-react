@@ -5,15 +5,25 @@ body{
 .pageHeader {
     background-color: #145fd9;
     color: #fff;
-    max-height: 300px;
     justify-content: center;
     align-items: center;
     height: 100px;
     display: grid;
-    grid-template-columns: auto auto auto;
-    padding-left: 800px;
+    grid-template-columns: auto auto;
+    /* padding-left: 800px; */
     margin-left: 150px;
     margin-right: 150px;
+    justify-content: end;
+  }
+    
+  .buttons{
+    border-radius: 6px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 115px;
+    height: 35px;
+    color: blue;
+    font-size: 20px;
+    margin-right: 50px;
   }
 
   .bestFlights {
@@ -86,16 +96,6 @@ input::-webkit-input-placeholder {
       text-align: center;
       font-size: 40px;
       color: #145fd9;
-  }
-  
-  .buttons{
-    border-radius: 6px;
-    font-family: 'Times New Roman', Times, serif;
-    width: 115px;
-    height: 35px;
-    color: blue;
-    font-size: 20px;
-    margin-right: 50px;
   }
 
   .filter{
