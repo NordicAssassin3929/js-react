@@ -58,3 +58,5 @@ export function createBooking(sessionData, headers) {
         console.log(res);
       });
   }
+
+  

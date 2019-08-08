@@ -17,7 +17,6 @@ export function RegisterComponent(props) {
     async function registerUser(data){
         appState.email = data.email;
         appState.fullName = data.username;
-        appState.password = data.password;
         let userData = {
             user: {
                 'email': `${data.email}`,

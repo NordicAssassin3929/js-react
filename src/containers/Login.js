@@ -18,7 +18,6 @@ export function LoginComponent(props) {
 
     async function registerSession(data){
         appState.email = data.email;
-        appState.password = data.password;
         let sessionData = {
             session: {
                 'email': `${data.email}`,

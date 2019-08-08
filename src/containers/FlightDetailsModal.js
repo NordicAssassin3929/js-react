@@ -2,12 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import styles from './FlightDetailsModal.module.css';
 import { createBooking } from '../services/users';
-import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
 
 function FlightDetailsModalComponent(props) {
-    const { appState } = React.useContext(AppContext);
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const registerBooking = (data) => {
         console.log('test');
@@ -26,10 +24,6 @@ function FlightDetailsModalComponent(props) {
         };
         createBooking(sessionData, headers);
         props.history.push(`/`);
-    }
-
-    function closeModal() {
-        props.history.goBack();
     }
 
     return (

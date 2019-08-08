@@ -30,14 +30,6 @@ export function FlightDetailsComponent(props) {
         props.history.push(`/flight-details/${props.match.params.id}/modal`);
     }
 
-    function backToHome() {
-        props.history.goBack();
-    }
-
-    function myBookings() {
-        props.history.push(`/profile`);
-    }
-
     return (
         <div key={appState.flight.id}>
             <div className={styles.pageHeader}>

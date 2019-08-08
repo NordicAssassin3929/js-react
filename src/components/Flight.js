@@ -1,15 +1,7 @@
 import React from 'react';
 import styles from './Flight.module.css';
 import { observer } from 'mobx-react';
-
-function formatTime(date) {
-    const year = date.substring(0, 4);
-    const month = date.substring(5, 7);
-    const day = date.substring(8, 10);
-    const hours = date.substring(11, 13);
-    const minutes = date.substring(14, 16);
-    return `${day}. ${month}. ${year}, ${hours}:${minutes}`;
-}
+import { formatTime} from './api'
 
 export function FlightComponent({ flight }) {
     console.log(flight.id);

@@ -28,14 +28,6 @@ export function HomeComponent(props) {
         props.history.push(`/profile`);
     }
 
-    // if (!appState.isLoaded) {
-    //     return <div>
-    //         <p>Please register or log in</p>
-    //         <Link to='/login'><button className="register">Login</button></Link>
-    //         <Link to='/register'><button className="register">Register</button></Link>
-    //     </div>
-    // }
-    // else {
     return (
         <div className={styles.container}>
             <h1 className={styles.hello}>Hello {appState.fullName}</h1>
@@ -89,7 +81,6 @@ export function HomeComponent(props) {
             </div>
         </div>
     );
-    // }
 }
 
 export const Home = observer(HomeComponent);

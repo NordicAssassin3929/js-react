@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 import { useEffectOnce } from 'react-use';
 import { getUser } from '../services/users';
 import styles from './Home.module.css';
-import { Link } from 'react-router-dom';
 
 export function ProfileComponent(props) {
     const { appState } = React.useContext(AppContext);
@@ -28,6 +27,11 @@ export function ProfileComponent(props) {
         props.history.goBack();
     }
 
+    function logout(){
+        localStorage.setItem('token', '');   
+        props.history.push('/login'); 
+    }
+
     function edit() {
         props.history.push('/profile/modal');
         // POST REQUEST TO EDIT USER DETAILS
@@ -37,8 +41,8 @@ export function ProfileComponent(props) {
         <div>
             <div className={styles.pageHeader}>
                 <h4 className={styles.pageHeaderItems}>Hi {appState.user.first_name}!</h4>
-                <Link className={styles.pageHeaderItems} to='/login'>
-                    <button className={styles.buttons}>Logout</button></Link>
+                <div className={styles.pageHeaderItems} onClick={logout}>
+                    <button className={styles.buttons}>Logout</button></div>
             </div>
             <div className={styles.avatar}>
                 <h3>Hi {appState.user.first_name} {appState.user.last_name}<br></br>
