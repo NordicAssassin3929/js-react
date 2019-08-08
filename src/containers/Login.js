@@ -1,9 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { createSession } from '../services/api';
+import { createSession } from '../services/users';
 import styles from './Login.module.css';
 import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 export function LoginComponent(props) {
     const { appState } = React.useContext(AppContext);
@@ -69,7 +70,7 @@ export function LoginComponent(props) {
             </div>
             <div
                 className={styles.registerHere}>
-                <p>Register here</p>
+                <Link to={`/register`}><p>Register here</p></Link>
             </div>
         </form>
     );

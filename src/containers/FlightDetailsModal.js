@@ -25,6 +25,7 @@ function FlightDetailsModalComponent(props) {
             'Content-Type': 'application/json'
         };
         createBooking(sessionData, headers);
+        props.history.push(`/`);
     }
 
     function closeModal() {

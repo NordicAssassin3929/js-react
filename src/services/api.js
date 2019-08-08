@@ -5,9 +5,8 @@ export function get(model, headers) {
   })
 }
 
-// Register
-export function createUser(data, appState) {
-  return fetch(`https://flighter-hw7.herokuapp.com/api/users`, {
+export function post(model, data) {
+  return fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -15,12 +14,24 @@ export function createUser(data, appState) {
       'Content-Type': 'application/json'
     }
   })
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-    }
-    )
 }
+
+// // Register
+// export function createUser(data, appState) {
+//   return fetch(`https://flighter-hw7.herokuapp.com/api/users`, {
+//     method: 'POST',
+//     body: JSON.stringify(data),
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(res => res.json())
+//     .then(res => {
+//       console.log(res);
+//     }
+//     )
+// }
 
 // Update User
 export function updateUser(data, headers, appState) {
@@ -36,30 +47,30 @@ export function updateUser(data, headers, appState) {
     )
 }
 
-// Login
-export function createSession(appState, sessionData) {
-  return fetch(`https://flighter-hw7.herokuapp.com/api/session`, {
-    method: 'POST',
-    body: JSON.stringify(sessionData),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(res => res.json())
-    .then(res => {
-      appState.imageProfile = res.session.user.image_url;
-      console.log(res);
-      console.log(res.session.user.id);
-      // user id for bookings set
-      appState.userId = res.session.user.id;
-      // token set
-      localStorage.setItem('token', res.session.token);
-      appState.token = res.session.token;
-      // hello username set
-      appState.fullName = res.session.user.first_name;
-    });
-}
+// // Login
+// export function createSession(appState, sessionData) {
+//   return fetch(`https://flighter-hw7.herokuapp.com/api/session`, {
+//     method: 'POST',
+//     body: JSON.stringify(sessionData),
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(res => res.json())
+//     .then(res => {
+//       //appState.imageProfile = res.session.user.image_url;
+//       console.log(res);
+//       console.log(res.session.user.id);
+//       // user id for bookings set
+//       appState.userId = res.session.user.id;
+//       // token set
+//       localStorage.setItem('token', res.session.token);
+//       appState.token = res.session.token;
+//       // hello username set
+//       appState.fullName = res.session.user.first_name;
+//     });
+// }
 
 // Creating Booking
 export function createBooking(sessionData, headers) {
@@ -84,8 +95,8 @@ export function uploadPhoto(body, appState) {
     body,
   }).then((response) => response.json())
     .then((res) => {
-      console.log(res); 
-      console.log(res.imageUrl); 
+      console.log(res);
+      console.log(res.imageUrl);
       appState.imageUrl = res.imageUrl;
     });
 }

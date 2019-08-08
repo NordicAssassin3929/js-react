@@ -25,7 +25,7 @@ function ProfileModalComponent(props) {
 
     function upload() {
         const body = new FormData();
-        body.append('image', file);      
+        body.append('image', file);
         uploadPhoto(body, appState);
     }
 
@@ -36,7 +36,7 @@ function ProfileModalComponent(props) {
         /*
         {username: "natan", email: "example@example.com", password: "1221"}
         */
-       // password: secret1
+        // password: secret1
         let sessionData = {
             "user": {
                 "email": data.email,
@@ -58,9 +58,8 @@ function ProfileModalComponent(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit(editUser)}
-            className={styles.modalContainer}>
-            <div className={styles.modalContent}>
+        <div className={styles.modalContainer}>
+            <div>
                 <h1>Edit profile</h1>
                 <img src={appState.imageUrl}
                     alt="Smiley face" height="150" width="42"></img>
@@ -73,77 +72,81 @@ function ProfileModalComponent(props) {
                 </div>
                 <button onClick={upload}>Upload Photo</button>
                 <button onClick={closeModal}>Close</button>
-                <br></br>
-                <label>Username</label>
-                <input
-                    type="text"
-                    placeholder={appState.user.first_name}
-                    name="username"
-                    ref={register({
-                        required: 'Username is required!',
-                    })}>
-                </input>
-                {errors['username'] && errors['username'].message}
-                <br></br>
-                <label>E-mail</label>
-                <input
-                    type="email"
-                    placeholder={appState.user.email}
-                    name="email"
-                    ref={register({
-                        required: 'E-mail is required!',
-                        validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
-                    })}
-                >
-                </input>
-                {errors['password'] && errors['password'].message}
-                <br></br>
-                <label>Old password</label>
-                <input
-                    type="password"
-                    placeholder="Old password"
-                    name="oldPassword"
-                // ref={register({
-                //     required: 'Password is required!',
-                //     validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
-                // })}
-                >
-                </input>
-                {errors['password'] && errors['password'].message}
-                <br></br>
-                <label>New password</label>
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    ref={register({
-                        required: 'Password is required!',
-                        validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
-                    })}
-                >
-                </input>
-                {errors['password'] && errors['password'].message}
-                <br></br>
-                <label>Confirm password</label>
-                <input
-                    type="password"
-                    placeholder="Confirm password"
-                    name="confirmPassword"
-                // ref={register({
-                //     required: 'Password is required!',
-                //     validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
-                // })}
-                >
-                </input>
-                {errors['password'] && errors['password'].message}
-                <br></br>
-                <button
-                    className="ddd"
-                    type="submit">
-                    Save changes
-                </button>
             </div>
-        </form>
+            <form onSubmit={handleSubmit(editUser)}>
+                <div className={styles.modalContent}>
+                    <br></br>
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        placeholder={appState.user.first_name}
+                        name="username"
+                        ref={register({
+                            required: 'Username is required!',
+                        })}>
+                    </input>
+                    {errors['username'] && errors['username'].message}
+                    <br></br>
+                    <label>E-mail</label>
+                    <input
+                        type="email"
+                        placeholder={appState.user.email}
+                        name="email"
+                        ref={register({
+                            required: 'E-mail is required!',
+                            validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
+                        })}
+                    >
+                    </input>
+                    {errors['password'] && errors['password'].message}
+                    <br></br>
+                    <label>Old password</label>
+                    <input
+                        type="password"
+                        placeholder="Old password"
+                        name="oldPassword"
+                    // ref={register({
+                    //     required: 'Password is required!',
+                    //     validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
+                    // })}
+                    >
+                    </input>
+                    {errors['password'] && errors['password'].message}
+                    <br></br>
+                    <label>New password</label>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        ref={register({
+                            required: 'Password is required!',
+                            validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
+                        })}
+                    >
+                    </input>
+                    {errors['password'] && errors['password'].message}
+                    <br></br>
+                    <label>Confirm password</label>
+                    <input
+                        type="password"
+                        placeholder="Confirm password"
+                        name="confirmPassword"
+                    // ref={register({
+                    //     required: 'Password is required!',
+                    //     validate: (value) => Boolean(value.length > 3) || 'Use a stronger password'
+                    // })}
+                    >
+                    </input>
+                    {errors['password'] && errors['password'].message}
+                    <br></br>
+                    <button
+                        className="ddd"
+                        type="submit">
+                        Save changes
+                </button>
+                </div>
+            </form>
+        </div >
     );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppContext } from '../state/AppContext';
-import { observer, PropTypes } from 'mobx-react';
+import { observer} from 'mobx-react';
 import { useEffectOnce } from 'react-use';
-import { getUser } from '../services/flights';
+import { getUser } from '../services/users';
 import styles from './Home.module.css';
 import { Link } from 'react-router-dom';
 
@@ -40,20 +40,23 @@ __proto__: Object
     return (
         <div>
             <div className={styles.pageHeader}>
-                <h4>Hi {appState.user.first_name}!</h4>
-                <Link to='/login'><button className={styles.buttons}>Logout</button></Link>
+                <h4 className={styles.pageHeaderItems}>Hi {appState.user.first_name}!</h4>
+                <Link className={styles.pageHeaderItems} to='/login'>
+                    <button className={styles.buttons}>Logout</button></Link>
             </div>
-            <h3>Hi {appState.user.first_name} {appState.user.last_name}<br></br>
-                {appState.user.email}
-            </h3>
-            <button onClick={edit}>Edit</button><br></br>
-            {appState.imageProfile ? (
-                <img src={appState.imageProfile}
-                alt="Smiley face" height="150" width="42"></img>
-            ) : (
-                <img src={appState.imageUrl}
-                alt="Smiley face" height="150" width="42"></img>
-            )}
+            <div className={styles.avatar}>
+                <h3>Hi {appState.user.first_name} {appState.user.last_name}<br></br>
+                    {appState.user.email}
+                </h3>
+                <button onClick={edit}>Edit</button><br></br>
+                {appState.imageProfile ? (
+                    <img src={appState.imageProfile}
+                        alt="Smiley face" height="150" width="42"></img>
+                ) : (
+                        <img src={appState.imageUrl}
+                            alt="Smiley face" height="150" width="42"></img>
+                    )}
+            </div>
             My bookings:
             <div>
                 {appState.bookings.map(booking => (

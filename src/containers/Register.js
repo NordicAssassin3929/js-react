@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { createUser } from '../services/api';
+import { createUser } from '../services/users';
 import styles from './Register.module.css';
 import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
@@ -21,7 +21,7 @@ export function RegisterComponent(props) {
                 'password': `${data.password}`    
             }
         };
-        await createUser(userData, appState);
+        await createUser(userData);
         props.history.push('/login');
     }
 
