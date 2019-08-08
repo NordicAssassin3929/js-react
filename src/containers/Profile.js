@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppContext } from '../state/AppContext';
-import { observer} from 'mobx-react';
+import { observer } from 'mobx-react';
 import { useEffectOnce } from 'react-use';
 import { getUser } from '../services/users';
 import styles from './Home.module.css';
@@ -32,11 +32,7 @@ export function ProfileComponent(props) {
         props.history.push('/profile/modal');
         // POST REQUEST TO EDIT USER DETAILS
     }
-    /*
-    {user: {…}}
-user: {id: 674, email: "example@example.com", first_name: "jon", last_name: "jones", image_url: null, …}
-__proto__: Object
-    */
+    
     return (
         <div>
             <div className={styles.pageHeader}>
@@ -49,13 +45,8 @@ __proto__: Object
                     {appState.user.email}
                 </h3>
                 <button onClick={edit}>Edit</button><br></br>
-                {appState.imageProfile ? (
-                    <img src={appState.imageProfile}
-                        alt="Smiley face" height="150" width="42"></img>
-                ) : (
-                        <img src={appState.imageUrl}
-                            alt="Smiley face" height="150" width="42"></img>
-                    )}
+                <img src={appState.imageUrl}
+                    alt="avatar" height="150" width="150"></img>
             </div>
             My bookings:
             <div>

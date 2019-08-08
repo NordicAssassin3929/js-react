@@ -33,10 +33,6 @@ function ProfileModalComponent(props) {
         console.log('edit user');
         console.log(data);
         console.log(localStorage.getItem('token'));
-        /*
-        {username: "natan", email: "example@example.com", password: "1221"}
-        */
-        // password: secret1
         let sessionData = {
             "user": {
                 "email": data.email,
@@ -50,6 +46,7 @@ function ProfileModalComponent(props) {
             'Authorization': `${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         };
+        upload();
         updateUser(sessionData, headers, appState);
     }
 
@@ -62,7 +59,7 @@ function ProfileModalComponent(props) {
             <div>
                 <h1>Edit profile</h1>
                 <img src={appState.imageUrl}
-                    alt="Smiley face" height="150" width="42"></img>
+                    alt="avatar" height="150" width="150"></img>
                 <div {...getRootProps()}>
                     <input {...getInputProps()} />
                     {isDragActive ?
@@ -70,7 +67,6 @@ function ProfileModalComponent(props) {
                         <p>Drag and drop your files here!</p>
                     }
                 </div>
-                <button onClick={upload}>Upload Photo</button>
                 <button onClick={closeModal}>Close</button>
             </div>
             <form onSubmit={handleSubmit(editUser)}>

@@ -9,6 +9,11 @@ export function RegisterComponent(props) {
     const { appState } = React.useContext(AppContext);
     const { register, handleSubmit, errors } = useForm();
 
+    let headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+
     async function registerUser(data){
         appState.email = data.email;
         appState.fullName = data.username;
@@ -21,7 +26,7 @@ export function RegisterComponent(props) {
                 'password': `${data.password}`    
             }
         };
-        await createUser(userData);
+        await createUser(userData, headers);
         props.history.push('/login');
     }
 

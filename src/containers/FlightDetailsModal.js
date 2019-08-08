@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import styles from './FlightDetailsModal.module.css';
-import { createBooking } from '../services/api';
+import { createBooking } from '../services/users';
 import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
 

@@ -10,6 +10,12 @@ export function LoginComponent(props) {
     const { appState } = React.useContext(AppContext);
     const { register, handleSubmit, errors } = useForm();
 
+    let headers = {
+        'Authorization': localStorage.getItem('token'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+
     async function registerSession(data){
         appState.email = data.email;
         appState.password = data.password;
@@ -19,7 +25,7 @@ export function LoginComponent(props) {
                 'password': `${data.password}`
             }
         };
-        await createSession(appState, sessionData);
+        await createSession(appState, sessionData, headers);
         props.history.push('/');
     }
 
