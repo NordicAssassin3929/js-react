@@ -63,18 +63,6 @@ export function FlightDetailsComponent(props) {
                 <button onClick={openModal}
                     className={styles.bookNow}>Book now!</button>
             </div>
-            {/* <div className={styles.pageFooter}>
-                {<div className={styles.gridItem} key={appState.flight.id}>
-                    <img src="https://loremflickr.com/300/200/plane" alt="preview"></img>
-                    <div className={styles.info}>
-                        Name: {appState.flight.name} <br />
-                        Price: {appState.flight.current_price} <br />
-                    </div>
-                    <button onClick={myBookings}>My Bookings</button>
-                    <button onClick={openModal}>Book now!</button>
-                    <button onClick={backToHome} >Back to home page</button>
-                </div>}
-            </div> */}
         </div>
     );
 }
