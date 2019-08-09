@@ -1,0 +1,30 @@
+.pageHeader {
+  background-color: #145fd9;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  display: grid;
+  grid-template-columns: auto auto;
+  /* padding-left: 800px; */
+  justify-content: end;
+  border: 5px solid red;
+}
+
+  .buttons {
+    border-radius: 6px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 115px;
+    height: 35px;
+    color: blue;
+    font-size: 20px;
+    margin-right: 50px;
+  }
+
+  .pageHeaderItems{
+    margin-right: 50px;
+  }
+
+  .avatar{
+    border: 5px solid red;
+  }

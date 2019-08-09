@@ -1,0 +1,30 @@
+.modalContainer {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: #00000077;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContent {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    width: 600px;
+    height: 600px;
+    background-color: white;
+  }
+
+  .searchItem {
+    text-align: center;
+    display: inline-block;
+    color: #2763c4;
+    width: 350px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

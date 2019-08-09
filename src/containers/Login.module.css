@@ -1,0 +1,69 @@
+.wrapper {
+    display: grid;
+    grid-gap: 10px 5px;
+    grid-template-rows: [login] 200px [username] 50px [password] 50px [remember_me] 50px 
+    [button] 75px [no_account] 50px [register];
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+  }
+  
+  .loginTab{
+    color: #2c64b8;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+  }
+
+  input,
+  input::-webkit-input-placeholder {
+    font-size: 15px;
+}
+
+  .rememberMe{
+    margin-top: 30px;
+    font-size: 15px;
+    color:black;  
+    padding:20px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 220px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+input[type=checkbox] {
+   margin-right: 10px;
+  }
+
+ .registerHere{
+  margin-bottom: 100px;
+ }
+
+ .noAccount {
+   color: black;
+   margin-top: 160px;
+ }
+
+ .btn {
+  border-radius: 6px;
+  background-color: #2763c4;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  display: inline-block;
+  margin: 25px;
+  height: 40px;
+  width: 200px;
+}
+
+  p:link, p:visited, p:hover, p:active {
+    text-decoration: none;
+  }
+  p{
+    color: #2763c4;
+  }

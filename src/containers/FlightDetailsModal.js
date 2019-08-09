@@ -1,0 +1,54 @@
+import React from 'react';
+import { observer } from 'mobx-react';
+import styles from './FlightDetailsModal.module.css';
+import { createBooking } from '../services/users';
+import useForm from 'react-hook-form';
+
+function FlightDetailsModalComponent(props) {
+    const { register, handleSubmit } = useForm();
+
+    const registerBooking = (data) => {
+        console.log('test');
+        console.log(data);
+        console.log(data.number);
+        console.log(localStorage.getItem('token'));
+        let sessionData = {
+            "booking": {
+                "no_of_seats": data.number,
+                "flight_id": `${props.match.params.id}`
+            }
+        };
+        let headers = {
+            'Authorization': `${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+        };
+        createBooking(sessionData, headers);
+        props.history.push(`/`);
+    }
+
+    return (
+        <form onSubmit={handleSubmit(registerBooking)}
+            className={styles.modalContainer}>
+            <div className={styles.modalContent}>
+                <h1>Create booking</h1>
+                <h4>Number of passengers</h4>
+                <select
+                    name="number"
+                    ref={register}
+                    className={styles.searchItem}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <button
+                    className={styles.bookNow}
+                    type="submit">
+                    Confirm Booking
+                </button>
+            </div>
+        </form>
+    );
+}
+
+export const FlightDetailsModal = observer(FlightDetailsModalComponent);
